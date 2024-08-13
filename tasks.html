@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Задачи</title>
+  <style>
+    /* Стили для страницы задач */
+  </style>
+</head>
+<body>
+<h1>Задачи</h1>
+<div id="tasks-container">
+  {% for task in tasks %}
+  <div class="task">
+    <h2>Условие задачи:</h2>
+    <p>{{ task.condition }}</p>
+    <h3>Решение:</h3>
+    <p>{{ task.solution }}</p>
+  </div>
+  {% endfor %}
+</div>
+
+<button id="parse-tasks-button">Парсить задачи</button>
+<script>
+  document.getElementById('parse-tasks-button').addEventListener('click', function() {
+    fetch('/parse_tasks', {
+      method: 'POST'
+    })
+            .then(response => response.json())
+            .then(data => {
+              console.log(data);
+              alert('Задачи успешно спарсены!');
+            })
+            .catch(error => console.error('Error:', error));
+  });
+</script>
+</body>
+</html>
