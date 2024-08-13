@@ -100,10 +100,6 @@ def evaluate_solution():
     user_solution = request.form['solution']
     correct_solution = request.form['correct_solution']
 
-    # Используем модель для оценки решения
-    # score = model.evaluate_solution(user_solution, correct_solution)
-
-    # Здесь используется пример с простым сравнением (заглушка)
     score = user_solution == correct_solution
 
     return jsonify({'score': score})
